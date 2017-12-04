@@ -1,6 +1,6 @@
 var http = require("http");
 var fs = require('fs');
-var url = require('rul');
+var url = require('url');
 
 var server = http.createServer(function(req, res){
   var pathname = url.parse(req.url).pathname;
@@ -8,7 +8,7 @@ var server = http.createServer(function(req, res){
   else pathname = "." + pathname;
   fs.readFile(pathname, function(err, data){
     if(err) {
-      res.wirteHeader(500);
+      res.writeHeader(500);
       res.end("Error");
     } else {
       res.wirteHeader(200);
