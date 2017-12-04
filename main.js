@@ -19,7 +19,18 @@ var server = http.createServer(function(req, res){
 
 server.listen(8081);
 
+var Users = new Array();
+
 var io = require('socket.io')(server);
 io.on("connection", function(socket){
-  console.log("connection");
+
+  Users.push(socket.id);
+
+  socket.on("draw", function(data){
+    socket.broadcast.emit("draw", data);
+  });
+
+  socket.on("disconnect", function(socket){
+    Users.splice(socket.id);
+  });
 });
