@@ -16,8 +16,8 @@ var server = http.createServer(function(req, res){
     }
   });
 });
-
-server.listen(8081);
+console.log('Server running');
+server.listen(80);
 
 var Users = new Array();
 
